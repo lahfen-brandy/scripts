@@ -1,0 +1,43 @@
+# Files-only fuzzing:
+cat filenames.txt param_values.txt | sort -u > ffuf_filenames_wordlist.txt
+
+
+# Directory fuzzing (dirsearch often expects plain dirs):
+cat dirs_for_ffuf.txt | sort -u > dirsearch_dirs.txt
+
+
+# Combine everything small-first (good starting list)
+cat filenames.txt dir_segments.txt param_names.txt param_values.txt \
+  | sed '/^$/d' | sort -u > combined_small_wordlist.txt
+
+
+
+7) Tips to improve quality
+• Remove long UUIDs/noisy tokens: grep -vE '[0-9a-fA-F]{20,}'
+• Keep extensions if you’re targeting files (\.php|\.zip|\.pdf) or filter to only those: grep -E '\.(php|asp|jsp|zip|xml|json)$'
+• Limit size for first runs (100–500 lines) to avoid noisy fuzzing: head -n 500 > small.txt
+• Decode URL-encoded values with urldecode or python if values contain %2F etc.
+
+
+
+8) Example ffuf usage with the wordlist
+
+# fuzz filenames at site root
+ffuf -u https://target.com/FUZZ -w ffuf_filenames_wordlist.txt -mc 200,301,302 -ac
+
+
+# fuzz download endpoint param
+ffuf -u "https://target.com/download.php?file=FUZZ" -w ffuf_filenames_wordlist.txt -mc 200,302,403 -ac
+Start small (100–500 high-quality entries)
+
+
+# keep first 500 unique entries
+sort -u big_wordlist.txt | head -n 500 > small_wordlist.txt
+
+
+Dedupe & clean (remove long UUIDs / nonsense)
+
+# remove tokens > 20 hex chars (common long UUID/noise)
+grep -vE '[0-9a-fA-F]{20,}' filenames.txt > filenames_clean.txt
+# dedupe and keep only non-empty lines
+sed '/^$/d' filenames_clean.txt | sort -u > filenames_final.txt

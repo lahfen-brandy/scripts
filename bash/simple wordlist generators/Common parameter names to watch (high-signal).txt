@@ -1,0 +1,84 @@
+id, file, path, url, redirect, q, search, token, session, uid, user, name, view, download, export, img, avatar, lang, page, action, cmd, report
+
+If a parameter name looks like any of the above, treat it as higher priority.
+
+• Authentication / Authorization endpoints
+• Examples: /login, /logout, /signup, /reset, /auth, /oauth/token, /sso, /forgot-password
+• Params: username, email, token, redirect
+• Why: flaws → account takeover, auth bypass, open-redirects, token reuse, password reset abuse.
+
+• Admin / Management panels
+• Examples: /admin/, /admin/login, /manage, /dashboard
+• Why: direct access to privileged functionality. Also often poorly protected or left with default creds.
+• 
+• API endpoints
+• Examples: /api/, /api/v1/, /graphql, /rest/, /v2/
+• Files: /api/docs, /swagger.json, /openapi.json, /swagger-ui
+• Why: APIs often expose functionality not available in the UI; auth issues, broken access control (IDOR), overly permissive CORS.
+
+• File download / file serve endpoints
+• Examples: /download.php?file=, /file, /files/, /media/, /getfile, /attachments/, /assets/
+• Params: file, path, name, id
+• Why: LFI, path traversal, arbitrary file download, info disclosure.
+
+• File upload endpoints
+• Examples: /upload, /upload.php, /files/upload, /avatar/upload
+• Params: file body, filename, content-type
+• Why: RCE via file upload, unrestricted file types, content-type bypass, stored XSS.
+
+• Search / query endpoints
+• Examples: /search?q=, /query, /find, /autocomplete
+• Params: q, term, page
+• Why: reflected XSS, injection, DOS via expensive queries.
+
+• Parameter-driven pages (dynamic pages)
+• Examples: product?id=, view.php?doc=, page.php?name=
+• Why: injection (SQLi), template injection (SSTI), LFI if file names used.
+
+• Export / report endpoints
+• Examples: /export, /export/csv, /report, /download-report?id=
+• Why: often read and output files dynamically; can leak data, permit arbitrary file read.
+
+• Debug / dev / test endpoints
+• Examples: /phpinfo.php, /debug, /dev, /console, /actuator, /health, /status
+• Why: reveal environment, configs, endpoints, internal metadata; can lead to keys or RCE.
+
+• Backup / archive endpoints & common filenames
+• Examples: /backup.zip, /backup.sql, /db-backup, site-backup.zip, /old/, /archive/
+• Why: leftover backups often contain source code, credentials, DB dumps.
+
+• Version control and sensitive files
+• Examples: /.git/, /.git/config, /.env, /config.php, /wp-config.php, /composer.lock, package.json, .DS_Store
+• Why: direct disclosure of secrets or source. /.git can let you reconstruct repo.
+
+• Logs & temporary files
+• Examples: /logs/, /log.txt, /error.log, /access.log, /tmp/
+• Why: logs can include credentials or session data, and some readers allow LFI to read them.
+
+• Admin utilities & DB tools
+• Examples: /phpmyadmin, /pma, /adminer.php, /sql/backup
+• Why: default installations with weak security can give DB access.
+
+• CMS-specific endpoints
+• WordPress: /wp-admin/, /wp-login.php, /xmlrpc.php, /wp-content/uploads/
+• Joomla/Drupal/etc have their own admin/upgrade endpoints.
+• Why: very common, known exploits, plugins with vulnerabilities.
+
+• Third-party service integrations
+• Examples: /sso/, /webhook, /payment/notify, /callback, /oauth/callback
+• Why: insecure webhooks or callbacks can be abused (CSRF, SSRF, replay
+
+• Open redirect targets
+• Examples: ?redirect=, ?next=, ?url=, ?return=
+• Why: phishing/social engineering, auth bypass flows, and chaining to SSRF.
+
+• GraphQL endpoints
+• Examples: /graphql, /.graphql
+• Why: complex queries allow data enumeration and bypass of REST checks.
+
+• Static assets & content directories
+• Examples: /static/, /assets/, /uploads/, /media/
+• Why: uploads often misconfigured; static directories can expose sensitive files.
+
+• Misc helpful files
+• robots.txt (path hints), sitemap.xml (discovery), security.txt (contact), README, CHANGELOG (version info)
