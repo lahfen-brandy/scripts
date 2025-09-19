@@ -6,7 +6,7 @@
 
 # this is the 5th script in the simple
 # wordlist generator, all were written
-# in bash, except this
+# in bash, except this.
 
 from urllib.parse import urlparse, parse_qs
 import sys

@@ -2,7 +2,7 @@ import requests
 import sys
 from colorama import init, Fore, Style
 
-# Initialize colorama for Windows and others
+# Initialize colorama for Windows and others.
 init(autoreset=True)
 
 # Disable warnings from unverified HTTPS requests

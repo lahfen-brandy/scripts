@@ -1,4 +1,4 @@
-# FROM THE YOUTUBE GUYS GITPAGE MEDIUM PAGE <<<<< I ADDED THIS LINE TO THE SCRIPT
+# FROM THE YOUTUBE GUYS GITPAGE MEDIUM PAGE <<<<< I ADDED THIS LINE TO THE SCRIPT.
 
 # scsript with help of chatgpt for tryhackme room https://tryhackme.com/r/room/pyrat
 import socket

@@ -1,7 +1,7 @@
 // There are a total of 10 different js snippets here, use them cronologically to study the output clearly
 
 
-// Monkey-patch fetch and XMLHttpRequest
+// Monkey-patch fetch and XMLHttpRequest.
 // This lets you log every API call the page makes (including endpoints used to fetch user data).
 
 (function() {

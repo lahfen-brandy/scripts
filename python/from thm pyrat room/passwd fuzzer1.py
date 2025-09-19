@@ -1,4 +1,4 @@
-# FROM ROOM OWNERS MEDIUM PAGE <<<<< I ADDED THIS LINE TO THE SCRIPT
+# FROM ROOM OWNERS MEDIUM PAGE <<<<< I ADDED THIS LINE TO THE SCRIPT.
 
 def test_this(password):
   # Create a socket object
