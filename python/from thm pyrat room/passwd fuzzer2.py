@@ -1,4 +1,4 @@
-# FROM THE YOUTUBE GUYS GITPAGE MEDIUM PAGE <<<<< I ADDED THIS LINE TO THE SCRIPT
+# FROM THE YOUTUBE GUYS GITPAGE MEDIUM PAGE <<<<< I ADDED THIS LINE TO THE SCRIPT.
 
 #script with help of claudi AI for tryhackme room pyrat https://tryhackme.com/r/room/pyrat
 import socket

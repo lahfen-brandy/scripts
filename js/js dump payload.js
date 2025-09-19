@@ -1,5 +1,5 @@
 // This contains 3 js scripts only
-//use at random
+//use at random.
 
 // Initial:
 

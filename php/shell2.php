@@ -1,5 +1,5 @@
 <?php
-// use for via possible rce file upload vulns
+// use for via possible rce file upload vulns.
 // use either
 
 // this

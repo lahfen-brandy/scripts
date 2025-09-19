@@ -1,4 +1,4 @@
-# FROM ROOM OWNERS MEDIUM PAGE <<<<< I ADDED THIS LINE TO THE SCRIPT
+# FROM ROOM OWNERS MEDIUM PAGE <<<<< I ADDED THIS LINE TO THE SCRIPT.
 
 import socket
 # Define the server's address and port
